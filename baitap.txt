@@ -1,0 +1,16 @@
+-- Đối tượng Người dùng :
++ user_id
++ full_name
++ phone 
++ address
++ status
++ role_id
+
+-- đối tượng Quyền 
++ id_role
++ role_name 
+
+-- mặc định thêm dữ liệu cho bảng Quyền gốm 3 quyền ADMIN, USER, PM
+// làm chức năng crud, tìm kiếm tương đối theo tên của người dùng (thêm mới yêu cầu nhập tên quyền để thêm)
+
+// thống kê số lượng người dùng theo quyền (Out parameter)

@@ -1,15 +1,12 @@
 package ra.present;
 
+import ra.bussiness.daoIpl.StudentDao;
 import ra.bussiness.util.InputMethods;
 import ra.bussiness.util.Validate;
 
 public class Test {
+    private static final StudentDao studentDao = new StudentDao();
     public static void main(String[] args) {
-        System.out.println("Hẫy nập vào email");
-        String email = InputMethods.getString();
-        if (!Validate.validated(email)){
-            System.err.println("Email không đúng định dang");
-        }
-
+        System.out.println(studentDao.calTotalStudentByClassId(2));
     }
 }

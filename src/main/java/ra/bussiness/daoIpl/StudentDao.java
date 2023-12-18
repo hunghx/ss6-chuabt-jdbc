@@ -2,6 +2,7 @@ package ra.bussiness.daoIpl;
 
 import ra.bussiness.dao.IStudentDao;
 import ra.bussiness.model.Student;
+import ra.bussiness.model.StudentDto;
 import ra.bussiness.util.ConnectDB;
 
 import java.math.BigDecimal;
@@ -11,19 +12,21 @@ import java.util.List;
 
 public class StudentDao implements IStudentDao {
     @Override
-    public List<Student> findAll() {
-        List<Student> list = new ArrayList<>();
+    public List<StudentDto> findAll() {
+        List<StudentDto> list = new ArrayList<>();
         Connection conn = ConnectDB.openConnection();
         try {
-            CallableStatement call = conn.prepareCall("SELECT * from Student");
+            CallableStatement call = conn.prepareCall("select s.*,c.className from student s join classname c on s.class_id =c.id");
             ResultSet rs = call.executeQuery();
             while (rs.next()) {
-                Student s = new Student();
+                StudentDto s = new StudentDto();
                 s.setId(rs.getLong("id"));
                 s.setFirstName(rs.getString("first_name"));
                 s.setLastName(rs.getString("last_name"));
                 s.setSex(rs.getBoolean("sex"));
                 s.setBirthDay(rs.getDate("birthday"));
+                s.setPhone(rs.getString("phone"));
+                s.setClassName(rs.getString("className"));
                 list.add(s);
             }
         } catch (SQLException e) {
@@ -95,6 +98,24 @@ public class StudentDao implements IStudentDao {
             CallableStatement call = conn.prepareCall("delete  from student where id = ?");
             call.setLong(1, id);
             call.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            ConnectDB.closeConnection(conn); // đóng kết nối
+        }
+    }
+
+    public long calTotalStudentByClassId(Integer classId){
+        Connection conn  = ConnectDB.openConnection();
+        try {
+            CallableStatement call = conn.prepareCall("{call cal_total_students(?,?)}");
+            call.setInt(1, classId);
+            call.registerOutParameter(2,Types.BIGINT); // đăng kí tham số out
+            call.execute();
+
+            // lấy ra tham số out
+            long total = call.getLong(2);
+            return total;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {

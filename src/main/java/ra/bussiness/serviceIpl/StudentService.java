@@ -3,6 +3,7 @@ package ra.bussiness.serviceIpl;
 import ra.bussiness.dao.IStudentDao;
 import ra.bussiness.daoIpl.StudentDao;
 import ra.bussiness.model.Student;
+import ra.bussiness.model.StudentDto;
 import ra.bussiness.service.IStudentService;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 public class StudentService implements IStudentService {
     private static final IStudentDao studentDao = new StudentDao();
     @Override
-    public List<Student> findAll() {
+    public List<StudentDto> findAll() {
         return studentDao.findAll();
     }
 

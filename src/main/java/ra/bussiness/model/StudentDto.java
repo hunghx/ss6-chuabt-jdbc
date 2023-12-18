@@ -1,19 +1,22 @@
 package ra.bussiness.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-// Sử dụng lombok
+// dto data transfer object
+
 @NoArgsConstructor // constructor không tham số
 @AllArgsConstructor // constructor full tham số
-@Data // bao gồm getter, setter, tostring
-public class Student {
+@Data
+public class StudentDto {
     private Long id;
     private String lastName;
     private String firstName;
     private Date birthDay;
     private Boolean sex;
     private String phone;
-    private Integer classId;
+    private String className;
 }

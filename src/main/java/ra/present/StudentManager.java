@@ -1,6 +1,7 @@
 package ra.present;
 
 import ra.bussiness.model.Student;
+import ra.bussiness.model.StudentDto;
 import ra.bussiness.service.IStudentService;
 import ra.bussiness.serviceIpl.StudentService;
 import ra.bussiness.util.Format;
@@ -20,7 +21,7 @@ public class StudentManager {
             System.out.println("4. Xóa Sinh viên");
             System.out.println("5. Thoát chng trình");
 
-            System.out.println("-----------Nhập lựa chọn của bạn-----------");
+
             byte choice = InputMethods.getByte();
             switch (choice) {
                 case 1:
@@ -44,12 +45,12 @@ public class StudentManager {
     }
     //chuc nang hiển thị
     private static void displayAllStudent(){
-        List<Student> students = studentService.findAll();
+        List<StudentDto> students = studentService.findAll();
         if (students.isEmpty()){
             System.err.println("Danh sách trống");
             return;
         }
-        for (Student s: students){
+        for (StudentDto s: students){
             System.out.println(s);
         }
     }
@@ -59,15 +60,17 @@ public class StudentManager {
         int count = InputMethods.getInteger();
         for (int i = 1; i <=count ; i++) {
             System.out.println("------Nhập thông tin cho sv thứ "+i+"--------");
-            System.out.println("Nhập Họ ");
+
             String lastName  = InputMethods.getString();
-            System.out.println("Nhập tên ");
+
             String firstName  = InputMethods.getString();
-            System.out.println("Nhập Ngày sinh ");
+
             Date date  = Format.convertToDate(InputMethods.getString());
-            System.out.println("Nhập giơi tính ");
+
             Boolean sex = InputMethods.getBoolean();
-            Student  s = new Student(null,lastName,firstName,date,sex);
+
+            String phone = InputMethods.getString();
+            Student  s = new Student(null,lastName,firstName,date,sex,phone,null);
             studentService.add(s);
         }
         System.out.println("Thêm mới thành công "+count+" sinh viên");
