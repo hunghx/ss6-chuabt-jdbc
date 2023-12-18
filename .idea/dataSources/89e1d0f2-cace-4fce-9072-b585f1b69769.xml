@@ -1008,7 +1008,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </schema>
     <schema id="292" parent="1" name="jdbc">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2023-12-18.12:02:47</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2023-12-18.13:18:59</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="293" parent="1" name="md05_ls_validation">
@@ -1111,15 +1111,28 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <DasType>bit(1)|0s</DasType>
       <Position>5</Position>
     </column>
-    <index id="319" parent="308" name="PRIMARY">
+    <column id="319" parent="308" name="phone">
+      <DasType>varchar(15)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <index id="320" parent="308" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="320" parent="308" name="PRIMARY">
+    <index id="321" parent="308" name="phone">
+      <ColNames>phone</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="322" parent="308" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <key id="323" parent="308" name="phone">
+      <UnderlyingIndexName>phone</UnderlyingIndexName>
     </key>
   </database-model>
 </dataSource>

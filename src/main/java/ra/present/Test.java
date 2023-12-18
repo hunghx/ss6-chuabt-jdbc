@@ -1,12 +1,15 @@
 package ra.present;
 
-import ra.bussiness.model.Student;
+import ra.bussiness.util.InputMethods;
+import ra.bussiness.util.Validate;
 
 public class Test {
     public static void main(String[] args) {
-        Student s= new Student();
-        s.setId(1L);
-        s.setFirstName("Hung");
-        System.out.println(s);
+        System.out.println("Hẫy nập vào email");
+        String email = InputMethods.getString();
+        if (!Validate.validated(email)){
+            System.err.println("Email không đúng định dang");
+        }
+
     }
 }
